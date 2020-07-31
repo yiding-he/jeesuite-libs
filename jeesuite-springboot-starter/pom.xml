@@ -9,18 +9,6 @@
 
   <artifactId>jeesuite-springboot-starter</artifactId>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>${spring-boot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
 
     <dependency>
@@ -33,6 +21,13 @@
     <dependency>
       <groupId>com.jeesuite</groupId>
       <artifactId>jeesuite-cache</artifactId>
+      <version>${project.version}</version>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>com.jeesuite</groupId>
+      <artifactId>jeesuite-security</artifactId>
       <version>${project.version}</version>
       <optional>true</optional>
     </dependency>
