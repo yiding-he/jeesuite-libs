@@ -21,12 +21,13 @@ public class TokenGenerator {
 
     private static final int EXPIRE = 1000 * 60 * 3;
 
-    public static String generate(String... prefixes) {
+    public static String generate() {
+        return generate("");
+    }
+
+    public static String generate(String prefix) {
         String str = StringUtils.replace(UUID.randomUUID().toString(), LINE_THROUGH, StringUtils.EMPTY);
-        if (prefixes != null && prefixes.length > 0 && StringUtils.isNotBlank(prefixes[0])) {
-            return prefixes[0].concat(str);
-        }
-        return str;
+        return StringUtils.isEmpty(prefix) ? str : (prefix + str);
     }
 
     public static String generateWithSign() {
