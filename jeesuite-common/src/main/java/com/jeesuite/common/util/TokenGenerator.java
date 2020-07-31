@@ -44,7 +44,6 @@ public class TokenGenerator {
         return DES.encrypt(cryptKey, str).toLowerCase();
     }
 
-
     public static void validate(String token, boolean validateExpire) {
         validate(null, token, validateExpire);
     }
@@ -53,7 +52,7 @@ public class TokenGenerator {
      * 验证带签名信息的token
      */
     public static void validate(String tokenType, String token, boolean validateExpire) {
-        long timestamp = 0;
+        long timestamp;
         Date date = new Date();
         String cryptKey = getCryptKey(tokenType, date);
         try {
@@ -75,14 +74,5 @@ public class TokenGenerator {
         key = key + format.format(date).toUpperCase();
         key = DigestUtils.md5(key).substring(0, 8);
         return key;
-    }
-
-    public static void main(String[] args) {
-        System.setProperty("jeesuite.configcenter.cryptKey", "sdf2333333333");
-        String generateWithSign = TokenGenerator.generateWithSign("jeesuite.configcenter");
-        System.out.println(generateWithSign);
-
-        TokenGenerator.validate("jeesuite.configcenter", generateWithSign, true);
-
     }
 }
