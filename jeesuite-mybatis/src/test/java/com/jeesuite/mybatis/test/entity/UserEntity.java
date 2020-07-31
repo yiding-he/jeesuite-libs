@@ -1,11 +1,13 @@
 package com.jeesuite.mybatis.test.entity;
 
 import com.jeesuite.mybatis.core.BaseEntity;
-import java.util.Date;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -19,7 +21,7 @@ public class UserEntity extends BaseEntity {
     private String email;
 
     private Short type;
-    
+
     private Short status;
 
     @Column(name = "created_at")
@@ -36,10 +38,10 @@ public class UserEntity extends BaseEntity {
     }
 
     /**
-     * @param id
+     *
      */
     public void setId(Integer id) {
-    	if(this.id != null && id != null)return;
+        if (this.id != null && id != null) return;
         this.id = id;
     }
 
@@ -51,7 +53,7 @@ public class UserEntity extends BaseEntity {
     }
 
     /**
-     * @param name
+     *
      */
     public void setName(String name) {
         this.name = name;
@@ -65,7 +67,7 @@ public class UserEntity extends BaseEntity {
     }
 
     /**
-     * @param password
+     *
      */
     public void setPassword(String password) {
         this.password = password;
@@ -79,7 +81,7 @@ public class UserEntity extends BaseEntity {
     }
 
     /**
-     * @param mobile
+     *
      */
     public void setMobile(String mobile) {
         this.mobile = mobile;
@@ -93,7 +95,7 @@ public class UserEntity extends BaseEntity {
     }
 
     /**
-     * @param email
+     *
      */
     public void setEmail(String email) {
         this.email = email;
@@ -107,21 +109,21 @@ public class UserEntity extends BaseEntity {
     }
 
     /**
-     * @param type
+     *
      */
     public void setType(Short type) {
         this.type = type;
     }
 
     public Short getStatus() {
-		return status;
-	}
+        return status;
+    }
 
-	public void setStatus(Short status) {
-		this.status = status;
-	}
+    public void setStatus(Short status) {
+        this.status = status;
+    }
 
-	/**
+    /**
      * @return created_at
      */
     public Date getCreatedAt() {
@@ -129,7 +131,7 @@ public class UserEntity extends BaseEntity {
     }
 
     /**
-     * @param createdAt
+     *
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -143,7 +145,7 @@ public class UserEntity extends BaseEntity {
     }
 
     /**
-     * @param updatedAt
+     *
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;

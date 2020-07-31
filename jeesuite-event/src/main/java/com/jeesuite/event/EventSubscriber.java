@@ -16,9 +16,8 @@
 package com.jeesuite.event;
 
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2018年12月29日
+ * @since 2018年12月29日
  */
 public interface EventSubscriber {
 

@@ -1,46 +1,41 @@
 package com.jeesuite.mybatis.test.entity;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import com.jeesuite.mybatis.core.BaseEntity;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Table(name = "sns_account_binding")
 public class SnsAccounyBindingEntity extends BaseEntity {
-	
-	public static enum SnsType{
-		weixin,weibo,qq
-	}
-	
+
+    public static enum SnsType {
+        weixin, weibo, qq
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "user_id",updatable = false)
+    @Column(name = "user_id", updatable = false)
     private Integer userId;
 
-    @Column(name = "sns_type",updatable = false)
+    @Column(name = "sns_type", updatable = false)
     private String snsType;
 
     @Column(name = "union_id")
     private String unionId;
 
-    @Column(name = "open_id",updatable = false)
+    @Column(name = "open_id", updatable = false)
     private String openId;
 
     private Boolean enabled = true;
 
-    @Column(name = "created_at",updatable = false)
+    @Column(name = "created_at", updatable = false)
     private Date createdAt;
 
     @Column(name = "updated_at")
     private Long updatedAt;
-    
+
     /**
      * @return id
      */
@@ -49,7 +44,7 @@ public class SnsAccounyBindingEntity extends BaseEntity {
     }
 
     /**
-     * @param id
+     *
      */
     public void setId(Integer id) {
         this.id = id;
@@ -63,7 +58,7 @@ public class SnsAccounyBindingEntity extends BaseEntity {
     }
 
     /**
-     * @param userId
+     *
      */
     public void setUserId(Integer userId) {
         this.userId = userId;
@@ -77,7 +72,7 @@ public class SnsAccounyBindingEntity extends BaseEntity {
     }
 
     /**
-     * @param snsType
+     *
      */
     public void setSnsType(String snsType) {
         this.snsType = snsType;
@@ -91,7 +86,7 @@ public class SnsAccounyBindingEntity extends BaseEntity {
     }
 
     /**
-     * @param unionId
+     *
      */
     public void setUnionId(String unionId) {
         this.unionId = unionId;
@@ -105,7 +100,7 @@ public class SnsAccounyBindingEntity extends BaseEntity {
     }
 
     /**
-     * @param openId
+     *
      */
     public void setOpenId(String openId) {
         this.openId = openId;
@@ -119,7 +114,7 @@ public class SnsAccounyBindingEntity extends BaseEntity {
     }
 
     /**
-     * @param enabled
+     *
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
@@ -133,7 +128,7 @@ public class SnsAccounyBindingEntity extends BaseEntity {
     }
 
     /**
-     * @param createdAt
+     *
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -147,11 +142,11 @@ public class SnsAccounyBindingEntity extends BaseEntity {
     }
 
     /**
-     * @param updatedAt
+     *
      */
     public void setUpdatedAt(Long updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    
+
 }

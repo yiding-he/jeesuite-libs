@@ -1,27 +1,30 @@
 package com.jeesuite.common.serializer;
 
-import java.io.IOException;
-import java.util.Deque;
-import java.util.concurrent.ConcurrentLinkedDeque;
-
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
+import java.io.IOException;
+import java.util.Deque;
+import java.util.concurrent.ConcurrentLinkedDeque;
+
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2016年12月28日
+ * @since 2016年12月28日
  */
-public class KryoPoolSerializer implements Serializer{
+public class KryoPoolSerializer implements Serializer {
 
     /**
      * Kryo 的包装
      */
     private static class KryoHolder {
+
         private Kryo kryo;
+
         static final int BUFFER_SIZE = 1024;
+
         private Output output = new Output(BUFFER_SIZE, -1);     //reuse
+
         private Input input = new Input();
 
         KryoHolder(Kryo kryo) {
@@ -35,17 +38,18 @@ public class KryoPoolSerializer implements Serializer{
 
         /**
          * get o kryo object
+         *
          * @return KryoHolder instance
          */
         KryoHolder get();
 
         /**
          * return object
+         *
          * @param kryo holder
          */
         void offer(KryoHolder kryo);
     }
-
 
 
     /**
@@ -61,7 +65,7 @@ public class KryoPoolSerializer implements Serializer{
         /**
          * thread safe list
          */
-        private final Deque<KryoHolder> kryoHolderDeque=new ConcurrentLinkedDeque<KryoHolder>();
+        private final Deque<KryoHolder> kryoHolderDeque = new ConcurrentLinkedDeque<KryoHolder>();
 
         private KryoPoolImpl() {
 
@@ -87,6 +91,7 @@ public class KryoPoolSerializer implements Serializer{
 
         /**
          * create a new kryo object to application use
+         *
          * @return KryoHolder instance
          */
         public KryoHolder creatInstnce() {
@@ -110,6 +115,7 @@ public class KryoPoolSerializer implements Serializer{
          * creat a Singleton
          */
         private static class Singleton {
+
             private static final KryoPool pool = new KryoPoolImpl();
         }
     }
@@ -121,32 +127,36 @@ public class KryoPoolSerializer implements Serializer{
 
     /**
      * Serialize object
+     *
      * @param obj what to serialize
+     *
      * @return return serialize data
      */
     @Override
     public byte[] serialize(Object obj) throws IOException {
-		KryoHolder kryoHolder = null;
-		if (obj == null)
-			throw new RuntimeException("obj can not be null");
-		try {
-			kryoHolder = KryoPoolImpl.getInstance().get();
-			kryoHolder.output.clear(); // clear Output -->每次调用的时候 重置
-			kryoHolder.kryo.writeClassAndObject(kryoHolder.output, obj);
-			return kryoHolder.output.toBytes();// 无法避免拷贝 ~~~
-		} catch (RuntimeException e) {
-			throw new RuntimeException(e);
-		} finally {
-			if (kryoHolder != null) {
-				KryoPoolImpl.getInstance().offer(kryoHolder);
-			}
-			// obj = null; //GC
-		}
+        KryoHolder kryoHolder = null;
+        if (obj == null)
+            throw new RuntimeException("obj can not be null");
+        try {
+            kryoHolder = KryoPoolImpl.getInstance().get();
+            kryoHolder.output.clear(); // clear Output -->每次调用的时候 重置
+            kryoHolder.kryo.writeClassAndObject(kryoHolder.output, obj);
+            return kryoHolder.output.toBytes();// 无法避免拷贝 ~~~
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (kryoHolder != null) {
+                KryoPoolImpl.getInstance().offer(kryoHolder);
+            }
+            // obj = null; //GC
+        }
     }
 
     /**
      * Deserialize data
+     *
      * @param bytes what to deserialize
+     *
      * @return object
      */
     @Override
@@ -159,11 +169,11 @@ public class KryoPoolSerializer implements Serializer{
             return kryoHolder.kryo.readClassAndObject(kryoHolder.input);
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
-		} finally {
-			if (kryoHolder != null) {
-				KryoPoolImpl.getInstance().offer(kryoHolder);
-			}
-			// bytes = null; // for gc
-		}
+        } finally {
+            if (kryoHolder != null) {
+                KryoPoolImpl.getInstance().offer(kryoHolder);
+            }
+            // bytes = null; // for gc
+        }
     }
 }

@@ -1,21 +1,19 @@
 package com.jeesuite.kafka.serializer;
 
-import java.util.Map;
-
+import com.jeesuite.common.serializer.SerializeUtils;
 import org.apache.kafka.common.serialization.Deserializer;
 
-import com.jeesuite.common.serializer.SerializeUtils;
+import java.util.Map;
 
 /**
- * 
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2016年6月14日
+ * @since 2016年6月14日
  */
 public class KyroMessageDeserializer implements Deserializer<Object> {
-    
+
     @Override
-    public void configure(Map<String, ?> configs, boolean isKey) {}
+    public void configure(Map<String, ?> configs, boolean isKey) {
+    }
 
     @Override
     public Object deserialize(String topic, byte[] data) {

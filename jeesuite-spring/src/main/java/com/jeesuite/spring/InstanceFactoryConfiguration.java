@@ -22,20 +22,19 @@ import org.springframework.core.Ordered;
 import org.springframework.core.PriorityOrdered;
 
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2018年12月20日
+ * @since 2018年12月20日
  */
-public class InstanceFactoryConfiguration implements ApplicationContextAware,PriorityOrdered{
+public class InstanceFactoryConfiguration implements ApplicationContextAware, PriorityOrdered {
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		InstanceFactory.setInstanceProvider(new SpringInstanceProvider(applicationContext));
-	}
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        InstanceFactory.setInstanceProvider(new SpringInstanceProvider(applicationContext));
+    }
 
-	@Override
-	public int getOrder() {
-		return Ordered.HIGHEST_PRECEDENCE;
-	}
+    @Override
+    public int getOrder() {
+        return Ordered.HIGHEST_PRECEDENCE;
+    }
 
 }

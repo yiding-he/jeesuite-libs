@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.jeesuite.test.sch;
 
@@ -15,18 +15,19 @@ import org.springframework.stereotype.Service;
 @Aspect
 @Service
 @Order(0)
-public class JobInterceptor{
-	
-	protected static final Logger logger = LoggerFactory.getLogger(JobInterceptor.class);
+public class JobInterceptor {
 
-	//定义拦截切面
-	@Pointcut("execution(* com.jeesuite.test.sch..*.*(..))")  
-    public void pointcut(){}
+    protected static final Logger logger = LoggerFactory.getLogger(JobInterceptor.class);
 
-	 @Around("pointcut()") 
-	 public Object around(ProceedingJoinPoint pjp) throws Throwable{
-		 System.out.println("并没什么卵用，只是测试cglib生成代理类");
-		 return pjp.proceed();
-	 }  
+    //定义拦截切面
+    @Pointcut("execution(* com.jeesuite.test.sch..*.*(..))")
+    public void pointcut() {
+    }
+
+    @Around("pointcut()")
+    public Object around(ProceedingJoinPoint pjp) throws Throwable {
+        System.out.println("并没什么卵用，只是测试cglib生成代理类");
+        return pjp.proceed();
+    }
 
 }

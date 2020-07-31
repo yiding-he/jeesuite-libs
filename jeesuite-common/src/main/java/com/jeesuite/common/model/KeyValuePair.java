@@ -16,39 +16,40 @@
 package com.jeesuite.common.model;
 
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2018年11月7日
+ * @since 2018年11月7日
  */
 public class KeyValuePair {
 
     private String key;
-    private String value;
-    
-    public KeyValuePair() {}
 
-	public KeyValuePair(final String key, final String value) {
+    private String value;
+
+    public KeyValuePair() {
+    }
+
+    public KeyValuePair(final String key, final String value) {
         this.key = key;
         this.value = value;
     }
 
     public String getKey() {
-		return key;
-	}
+        return key;
+    }
 
-	public void setKey(String key) {
-		this.key = key;
-	}
+    public void setKey(String key) {
+        this.key = key;
+    }
 
-	public String getValue() {
-		return value;
-	}
+    public String getValue() {
+        return value;
+    }
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-	@Override
+    @Override
     public String toString() {
         return key + '=' + value;
     }

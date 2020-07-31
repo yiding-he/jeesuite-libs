@@ -1,30 +1,31 @@
 package com.jeesuite.log.log4j2;
 
+import com.jeesuite.log.Log;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.jeesuite.log.Log;
 
 
 public class Log4j2Impl implements Log {
 
     private Logger log;
 
-    private int    errorCount;
-    private int    warnCount;
-    private int    infoCount;
-    private int    debugCount;
+    private int errorCount;
+
+    private int warnCount;
+
+    private int infoCount;
+
+    private int debugCount;
 
     /**
      * @since 0.2.21
-     * @param log
      */
-    public Log4j2Impl(Logger log){
+    public Log4j2Impl(Logger log) {
         this.log = log;
     }
 
-    public Log4j2Impl(String loggerName){
+    public Log4j2Impl(String loggerName) {
         log = LogManager.getLogger(loggerName);
     }
 

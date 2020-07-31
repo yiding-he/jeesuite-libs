@@ -19,32 +19,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2018年11月30日
+ * @since 2018年11月30日
  */
 public class BaseUserInfo {
 
-	private String id;
-	private String userName;
-	private List<String> scopes = new ArrayList<>();
-	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public List<String> getScopes() {
-		return scopes;
-	}
-	public void setScopes(List<String> scopes) {
-		this.scopes = scopes;
-	}
+    private String id;
+
+    private String userName;
+
+    private List<String> scopes = new ArrayList<>();
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public List<String> getScopes() {
+        return scopes;
+    }
+
+    public void setScopes(List<String> scopes) {
+        this.scopes = scopes;
+    }
 }

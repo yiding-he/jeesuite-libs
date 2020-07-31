@@ -9,22 +9,19 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ResponseFormat {
 
-	/**
-	 * 默认需要事务
-	 * 
-	 * @return
-	 */
-	FormatType type();
+    /**
+     * 默认需要事务
+     */
+    FormatType type();
 
-	/**
-	 * JSON是否自动包装
-	 * 
-	 * @author vakinge
-	 * @return
-	 */
-	boolean jsonWrapper() default true;
+    /**
+     * JSON是否自动包装
+     *
+     * @author vakinge
+     */
+    boolean jsonWrapper() default true;
 
-	public static enum FormatType {
-		JSON, XML, NONE
-	}
+    public static enum FormatType {
+        JSON, XML, NONE
+    }
 }

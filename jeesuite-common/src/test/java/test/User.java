@@ -1,124 +1,122 @@
 /**
- * 
+ *
  */
 package test;
+
+import com.jeesuite.common.util.DigestUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import org.apache.commons.lang3.RandomStringUtils;
-
-import com.jeesuite.common.util.DigestUtils;
-
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2016年11月4日
+ * @since 2016年11月4日
  */
 public class User implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Integer id;
+    private Integer id;
 
-	private String name;
+    private String name;
 
-	private String password = DigestUtils.md5(RandomStringUtils.random(8, true, true));
+    private String password = DigestUtils.md5(RandomStringUtils.random(8, true, true));
 
-	private String mobile = "13800138000";
+    private String mobile = "13800138000";
 
-	private String email;
+    private String email;
 
-	private Short type = 1;
+    private Short type = 1;
 
-	private Short status = 1;
+    private Short status = 1;
 
-	private Date createdAt;
-	
-	private User father;
+    private Date createdAt;
 
-	public User() {}
-	
-	public User(Integer id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = name + "@163.com";
-		this.createdAt = new Date();
-	}
+    private User father;
 
-	public Integer getId() {
-		return id;
-	}
+    public User() {
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public User(Integer id, String name) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.email = name + "@163.com";
+        this.createdAt = new Date();
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getMobile() {
-		return mobile;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getMobile() {
+        return mobile;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
-	public Short getType() {
-		return type;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setType(Short type) {
-		this.type = type;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public Short getStatus() {
-		return status;
-	}
+    public Short getType() {
+        return type;
+    }
 
-	public void setStatus(Short status) {
-		this.status = status;
-	}
+    public void setType(Short type) {
+        this.type = type;
+    }
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+    public Short getStatus() {
+        return status;
+    }
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+    public void setStatus(Short status) {
+        this.status = status;
+    }
 
-	public User getFather() {
-		return father;
-	}
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
-	public void setFather(User father) {
-		this.father = father;
-	}
-	
-	
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public User getFather() {
+        return father;
+    }
+
+    public void setFather(User father) {
+        this.father = father;
+    }
+
 
 }

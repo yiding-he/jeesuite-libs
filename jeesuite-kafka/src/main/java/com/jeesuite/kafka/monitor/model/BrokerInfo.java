@@ -1,61 +1,63 @@
 /**
- * 
+ *
  */
 package com.jeesuite.kafka.monitor.model;
 
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2016年10月28日
+ * @since 2016年10月28日
  */
 public class BrokerInfo {
 
-	private String id;
-	private String host;
-	private int port;
-	private int version;
-	
-	public BrokerInfo() {}
+    private String id;
 
-	public BrokerInfo(String id, String host, int port) {
-		super();
-		this.id = id;
-		this.host = host;
-		this.port = port;
-	}
+    private String host;
 
-	public String getId() {
-		return id;
-	}
+    private int port;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    private int version;
 
-	public String getHost() {
-		return host;
-	}
+    public BrokerInfo() {
+    }
 
-	public void setHost(String host) {
-		this.host = host;
-	}
+    public BrokerInfo(String id, String host, int port) {
+        super();
+        this.id = id;
+        this.host = host;
+        this.port = port;
+    }
 
-	public int getPort() {
-		return port;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setPort(int port) {
-		this.port = port;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public int getVersion() {
-		return version;
-	}
+    public String getHost() {
+        return host;
+    }
 
-	public void setVersion(int version) {
-		this.version = version;
-	}
-	
-	
-	
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
+
 }

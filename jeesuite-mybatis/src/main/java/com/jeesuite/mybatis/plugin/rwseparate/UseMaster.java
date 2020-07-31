@@ -16,20 +16,19 @@
  */
 package com.jeesuite.mybatis.plugin.rwseparate;
 
-import static java.lang.annotation.ElementType.METHOD;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import static java.lang.annotation.ElementType.METHOD;
+
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(METHOD)
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2018年4月27日
+ * @since 2018年4月27日
  */
 public @interface UseMaster {
 

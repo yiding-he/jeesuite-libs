@@ -5,55 +5,55 @@
     <!--
       WARNING - @mbggenerated
     -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="password" jdbcType="CHAR" property="password" />
-    <result column="mobile" jdbcType="CHAR" property="mobile" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="type" jdbcType="SMALLINT" property="type" />
-    <result column="status" jdbcType="SMALLINT" property="status" />
-    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
-    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="password" jdbcType="CHAR" property="password"/>
+    <result column="mobile" jdbcType="CHAR" property="mobile"/>
+    <result column="email" jdbcType="VARCHAR" property="email"/>
+    <result column="type" jdbcType="SMALLINT" property="type"/>
+    <result column="status" jdbcType="SMALLINT" property="status"/>
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt"/>
   </resultMap>
-  
+
   <select id="findByType" resultMap="BaseResultMap">
       SELECT * FROM users where type = #{type} 
   </select>
-  
+
   <select id="findByStatus" resultMap="BaseResultMap">
       SELECT * FROM users where status = #{status} 
   </select>
-  
+
   <select id="findByMobile" resultMap="BaseResultMap">
       SELECT * FROM users where mobile = #{mobile} 
   </select>
-  
+
   <select id="findByIds" parameterType="java.util.List" resultMap="BaseResultMap">
-      SELECT * FROM users where id in
-     <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
-			#{id}
-	 </foreach>
+    SELECT * FROM users where id in
+    <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
+      #{id}
+    </foreach>
   </select>
-  
-   <select id="findMobileByIds" parameterType="java.util.List" resultType="String">
-      SELECT mobile FROM users where id in
-     <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
-			#{id}
-	 </foreach>
+
+  <select id="findMobileByIds" parameterType="java.util.List" resultType="String">
+    SELECT mobile FROM users where id in
+    <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
+      #{id}
+    </foreach>
   </select>
-  
+
   <select id="queryByExample" resultMap="BaseResultMap" parameterType="com.jeesuite.mybatis.test.entity.UserEntity">
-      SELECT * FROM users where 1=1
-      <if test="name != null">  
-        AND name = #{name}  
-    </if> 
-    <if test="mobile != null">  
-        AND mobile = #{mobile}  
-    </if> 
+    SELECT * FROM users where 1=1
+    <if test="name != null">
+      AND name = #{name}
+    </if>
+    <if test="mobile != null">
+      AND mobile = #{mobile}
+    </if>
     <if test="type != null"><![CDATA[and type >=#{type}  ]]></if>
-	<if test="status != null"><![CDATA[and status <=#{status}  ]]></if>
+    <if test="status != null"><![CDATA[and status <=#{status}  ]]></if>
   </select>
-  
+
   <select id="pageQuery" parameterType="map" resultMap="BaseResultMap">
     select * from users
     <where>
@@ -61,42 +61,42 @@
         and status = #{example.status}
       </if>
       <if test="example.name != null">
-        and UPPER(name) like CONCAT('%', UPPER(#{example.name}), '%')  
+        and UPPER(name) like CONCAT('%', UPPER(#{example.name}), '%')
       </if>
     </where>
     order by id desc
   </select>
-  
+
   <update id="updateType" parameterType="map">
-     update users set type = #{type} where id in
-     <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
-			#{id}
-	 </foreach>
+    update users set type = #{type} where id in
+    <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+      #{id}
+    </foreach>
   </update>
-  
+
   <update id="updateType2" parameterType="com.jeesuite.mybatis.test.entity.UserEntity">
-     update users set type = #{type} where 1=1
-     <if test="name != null">  
-        AND name = #{name}  
-    </if> 
-    <if test="mobile != null">  
-        AND mobile = #{mobile}  
-    </if> 
+    update users set type = #{type} where 1=1
+    <if test="name != null">
+      AND name = #{name}
+    </if>
+    <if test="mobile != null">
+      AND mobile = #{mobile}
+    </if>
   </update>
-  
-   <select id="findByLoginName" resultMap="BaseResultMap">
+
+  <select id="findByLoginName" resultMap="BaseResultMap">
     select * from users 
     where (name = #{name} or email = #{name} or mobile = #{name})
   </select>
-  
+
   <select id="findByWxUnionId" resultMap="BaseResultMap">
     select * from users 
     where id = (select user_id from sns_account_binding where union_id = #{unionId}  and enabled = 1 limit 1)
   </select>
-  
-  
+
+
   <select id="findWxUnionIdByUserId" resultType="String">
     select union_id from sns_account_binding where user_id = #{userId} and enabled = 1 limit 1
   </select>
-  
+
 </mapper>

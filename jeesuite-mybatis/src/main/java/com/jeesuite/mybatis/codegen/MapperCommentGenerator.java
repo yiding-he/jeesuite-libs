@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.jeesuite.mybatis.codegen;
 
@@ -15,8 +15,10 @@ import org.mybatis.generator.internal.util.StringUtility;
 import java.util.Properties;
 
 public class MapperCommentGenerator implements CommentGenerator {
+
     //开始的分隔符，例如mysql为`，sqlserver为[
     private String beginningDelimiter = "";
+
     //结束的分隔符，例如mysql为`，sqlserver为]
     private String endingDelimiter = "";
 

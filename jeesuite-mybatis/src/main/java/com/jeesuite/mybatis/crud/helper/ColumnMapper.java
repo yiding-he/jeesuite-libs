@@ -5,78 +5,85 @@ import org.apache.ibatis.type.TypeHandler;
 
 public class ColumnMapper {
 
-	private String property;
-	private String column;
-	private Class<?> javaType;
-	private JdbcType jdbcType;
-	private Class<? extends TypeHandler<?>> typeHandler;
-	private boolean id = false;
-	private boolean insertable = true;
-	private boolean updatable = true;
+    private String property;
 
-	public String getProperty() {
-		return property;
-	}
+    private String column;
 
-	public void setProperty(String property) {
-		this.property = property;
-	}
+    private Class<?> javaType;
 
-	public String getColumn() {
-		return column;
-	}
+    private JdbcType jdbcType;
 
-	public void setColumn(String column) {
-		this.column = column;
-	}
+    private Class<? extends TypeHandler<?>> typeHandler;
 
-	public Class<?> getJavaType() {
-		return javaType;
-	}
+    private boolean id = false;
 
-	public void setJavaType(Class<?> javaType) {
-		this.javaType = javaType;
-	}
+    private boolean insertable = true;
 
-	public boolean isId() {
-		return id;
-	}
+    private boolean updatable = true;
 
-	public void setId(boolean id) {
-		this.id = id;
-	}
+    public String getProperty() {
+        return property;
+    }
 
-	public boolean isInsertable() {
-		return insertable;
-	}
+    public void setProperty(String property) {
+        this.property = property;
+    }
 
-	public void setInsertable(boolean insertable) {
-		this.insertable = insertable;
-	}
+    public String getColumn() {
+        return column;
+    }
 
-	public boolean isUpdatable() {
-		return updatable;
-	}
+    public void setColumn(String column) {
+        this.column = column;
+    }
 
-	public void setUpdatable(boolean updatable) {
-		this.updatable = updatable;
-	}
+    public Class<?> getJavaType() {
+        return javaType;
+    }
 
-	public JdbcType getJdbcType() {
-		return jdbcType;
-	}
+    public void setJavaType(Class<?> javaType) {
+        this.javaType = javaType;
+    }
 
-	public void setJdbcType(JdbcType jdbcType) {
-		this.jdbcType = jdbcType;
-	}
+    public boolean isId() {
+        return id;
+    }
 
-	public Class<? extends TypeHandler<?>> getTypeHandler() {
-		return typeHandler;
-	}
+    public void setId(boolean id) {
+        this.id = id;
+    }
 
-	public void setTypeHandler(Class<? extends TypeHandler<?>> typeHandler) {
-		this.typeHandler = typeHandler;
-	}
-	
-    
+    public boolean isInsertable() {
+        return insertable;
+    }
+
+    public void setInsertable(boolean insertable) {
+        this.insertable = insertable;
+    }
+
+    public boolean isUpdatable() {
+        return updatable;
+    }
+
+    public void setUpdatable(boolean updatable) {
+        this.updatable = updatable;
+    }
+
+    public JdbcType getJdbcType() {
+        return jdbcType;
+    }
+
+    public void setJdbcType(JdbcType jdbcType) {
+        this.jdbcType = jdbcType;
+    }
+
+    public Class<? extends TypeHandler<?>> getTypeHandler() {
+        return typeHandler;
+    }
+
+    public void setTypeHandler(Class<? extends TypeHandler<?>> typeHandler) {
+        this.typeHandler = typeHandler;
+    }
+
+
 }

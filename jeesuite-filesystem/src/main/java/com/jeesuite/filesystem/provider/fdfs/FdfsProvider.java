@@ -1,29 +1,28 @@
 /**
- * 
+ *
  */
 package com.jeesuite.filesystem.provider.fdfs;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.Properties;
 
 import com.jeesuite.filesystem.UploadObject;
 import com.jeesuite.filesystem.UploadTokenParam;
 import com.jeesuite.filesystem.provider.AbstractProvider;
 
+import java.io.IOException;
+import java.util.Map;
+import java.util.Properties;
+
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2017年1月7日
+ * @since 2017年1月7日
  */
 public class FdfsProvider extends AbstractProvider {
 
-	public static final String NAME = "fastDFS";
+    public static final String NAME = "fastDFS";
 
-	private String groupName;
-	//private StorageClient1 client;
+    private String groupName;
+    //private StorageClient1 client;
 
-	public FdfsProvider(String groupName, Properties props) {
+    public FdfsProvider(String groupName, Properties props) {
 //		this.groupName = groupName;
 //		try {
 //			ClientGlobal.initByProperties(props);
@@ -34,10 +33,10 @@ public class FdfsProvider extends AbstractProvider {
 //		} catch (Exception e) {
 //			throw new RuntimeException(e);
 //		}
-	}
+    }
 
-	@Override
-	public String upload(UploadObject object) {
+    @Override
+    public String upload(UploadObject object) {
 //		NameValuePair[] metaDatas = new NameValuePair[object.getMetadata().size()];
 //		int index = 0;
 //		for (String key : object.getMetadata().keySet()) {
@@ -54,31 +53,31 @@ public class FdfsProvider extends AbstractProvider {
 //		} catch (Exception e) {
 //			// TODO: handle exception
 //		}
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public Map<String, Object> createUploadToken(UploadTokenParam param) {
-		return null;
-	}
+    @Override
+    public Map<String, Object> createUploadToken(UploadTokenParam param) {
+        return null;
+    }
 
-	@Override
-	public boolean delete(String fileKey) {
-		return false;
-	}
+    @Override
+    public boolean delete(String fileKey) {
+        return false;
+    }
 
-	@Override
-	public String getDownloadUrl(String fileKey) {
-		return getFullPath(fileKey);
-	}
+    @Override
+    public String getDownloadUrl(String fileKey) {
+        return getFullPath(fileKey);
+    }
 
-	@Override
-	public String name() {
-		return NAME;
-	}
+    @Override
+    public String name() {
+        return NAME;
+    }
 
-	@Override
-	public void close() throws IOException {
+    @Override
+    public void close() throws IOException {
 
-	}
+    }
 }

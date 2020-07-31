@@ -1,95 +1,97 @@
 /**
- * 
+ *
  */
 package com.jeesuite.springboot.starter.kafka;
 
-import java.util.Iterator;
-import java.util.Map.Entry;
-import java.util.Properties;
-
+import com.jeesuite.common.util.ResourceUtils;
+import com.jeesuite.spring.InstanceFactory;
+import com.jeesuite.spring.SpringInstanceProvider;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-import com.jeesuite.common.util.ResourceUtils;
-import com.jeesuite.spring.InstanceFactory;
-import com.jeesuite.spring.SpringInstanceProvider;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Properties;
 
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2016年12月31日
+ * @since 2016年12月31日
  */
-@ConfigurationProperties(prefix="jeesuite.kafka.consumer")
-public class KafkaConsumerProperties implements InitializingBean,ApplicationContextAware{
+@ConfigurationProperties(prefix = "jeesuite.kafka.consumer")
+public class KafkaConsumerProperties implements InitializingBean, ApplicationContextAware {
 
-	private boolean  independent;
-	private boolean  useNewAPI = true;
-	private int processThreads = 100;
-	private String scanPackages;
-	private Properties configs = new Properties();
-	
-	public boolean isIndependent() {
-		return independent;
-	}
+    private boolean independent;
 
-	public void setIndependent(boolean independent) {
-		this.independent = independent;
-	}
+    private boolean useNewAPI = true;
 
-	public boolean isUseNewAPI() {
-		return useNewAPI;
-	}
+    private int processThreads = 100;
 
-	public void setUseNewAPI(boolean useNewAPI) {
-		this.useNewAPI = useNewAPI;
-	}
+    private String scanPackages;
 
-	public int getProcessThreads() {
-		return processThreads;
-	}
+    private Properties configs = new Properties();
 
-	public void setProcessThreads(int processThreads) {
-		this.processThreads = processThreads;
-	}
+    public boolean isIndependent() {
+        return independent;
+    }
 
-	public String getScanPackages() {
-		return scanPackages;
-	}
+    public void setIndependent(boolean independent) {
+        this.independent = independent;
+    }
 
-	public void setScanPackages(String scanPackages) {
-		this.scanPackages = scanPackages;
-	}
+    public boolean isUseNewAPI() {
+        return useNewAPI;
+    }
 
-	public Properties getConfigs() {
-		return configs;
-	}
+    public void setUseNewAPI(boolean useNewAPI) {
+        this.useNewAPI = useNewAPI;
+    }
 
-	public void setConfigs(Properties configs) {
-		this.configs = configs;
-	}
+    public int getProcessThreads() {
+        return processThreads;
+    }
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		String kafkaServers = ResourceUtils.getProperty("kafka.bootstrap.servers");
-		String zkServers = ResourceUtils.getProperty("kafka.zkServers");
-		configs.put("bootstrap.servers", kafkaServers);
-		if(useNewAPI == false && zkServers != null){
-			configs.put("zookeeper.connect", zkServers);
-		}
-		Properties properties = ResourceUtils.getAllProperties("kafka.consumer.");
-		Iterator<Entry<Object, Object>> iterator = properties.entrySet().iterator();
-		while(iterator.hasNext()){
-			Entry<Object, Object> entry = iterator.next();
-			configs.put(entry.getKey().toString().replace("kafka.consumer.", ""), entry.getValue());
-		}
-	}
-	
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		InstanceFactory.setInstanceProvider(new SpringInstanceProvider(applicationContext));
-	}
-	
+    public void setProcessThreads(int processThreads) {
+        this.processThreads = processThreads;
+    }
+
+    public String getScanPackages() {
+        return scanPackages;
+    }
+
+    public void setScanPackages(String scanPackages) {
+        this.scanPackages = scanPackages;
+    }
+
+    public Properties getConfigs() {
+        return configs;
+    }
+
+    public void setConfigs(Properties configs) {
+        this.configs = configs;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        String kafkaServers = ResourceUtils.getProperty("kafka.bootstrap.servers");
+        String zkServers = ResourceUtils.getProperty("kafka.zkServers");
+        configs.put("bootstrap.servers", kafkaServers);
+        if (useNewAPI == false && zkServers != null) {
+            configs.put("zookeeper.connect", zkServers);
+        }
+        Properties properties = ResourceUtils.getAllProperties("kafka.consumer.");
+        Iterator<Entry<Object, Object>> iterator = properties.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Entry<Object, Object> entry = iterator.next();
+            configs.put(entry.getKey().toString().replace("kafka.consumer.", ""), entry.getValue());
+        }
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        InstanceFactory.setInstanceProvider(new SpringInstanceProvider(applicationContext));
+    }
+
 }

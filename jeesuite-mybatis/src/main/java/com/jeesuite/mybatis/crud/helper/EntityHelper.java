@@ -1,25 +1,13 @@
 package com.jeesuite.mybatis.crud.helper;
 
+import com.jeesuite.mybatis.core.BaseEntity;
+
+import javax.persistence.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import com.jeesuite.mybatis.core.BaseEntity;
+import java.util.*;
 
 public class EntityHelper {
 
@@ -27,12 +15,12 @@ public class EntityHelper {
      * 缓存TableMapper
      */
     private final static Map<Class<?>, EntityMapper> tableMapperCache = new HashMap<Class<?>, EntityMapper>();
+
     private final static Map<String, Map<String, Field>> entityFieldMappings = new HashMap<>();
 
     /**
      * 由传入的实体的class构建TableMapper对象，构建好的对象存入缓存中，以后使用时直接从缓存中获取
-     * 
-     * @param entityClass
+     *
      * @return TableMapper
      */
     public static EntityMapper getEntityMapper(Class<?> entityClass) {
@@ -86,12 +74,12 @@ public class EntityHelper {
                 columnMapper.setJavaType(field.getType());
 
                 // 是否主键
-                if(field.isAnnotationPresent(Id.class)){                	
-                	columnMapper.setId(true);
-                	if(field.isAnnotationPresent(GeneratedValue.class)){ 
-                		idStrategy = field.getAnnotation(GeneratedValue.class).strategy();
-                	}
-                	idColumn = columnMapper;
+                if (field.isAnnotationPresent(Id.class)) {
+                    columnMapper.setId(true);
+                    if (field.isAnnotationPresent(GeneratedValue.class)) {
+                        idStrategy = field.getAnnotation(GeneratedValue.class).strategy();
+                    }
+                    idColumn = columnMapper;
                 }
                 // 添加到所有字段映射信息
                 columnMapperSet.add(columnMapper);
@@ -99,9 +87,9 @@ public class EntityHelper {
                 field.setAccessible(true);
                 map.put(field.getName(), field);
             }
-            
+
             entityFieldMappings.put(tableMapper.getName(), map);
-            
+
             if (columnMapperSet.size() <= 0) {
                 throw new RuntimeException("实体" + entityClass.getName() + "不存在映射字段");
             }
@@ -125,8 +113,6 @@ public class EntityHelper {
 
     /**
      * 获取实体的ID泛型
-     * @param entityClass
-     * @return
      */
     private static Class<?> getIdClass(Class<?> entityClass) {
         Type[] genTypes = entityClass.getGenericInterfaces();
@@ -201,10 +187,6 @@ public class EntityHelper {
 
     /**
      * 获取全部的Field
-     * 
-     * @param entityClass
-     * @param fieldList
-     * @return
      */
     private static List<Field> getAllField(Class<?> entityClass) {
         return getAllField(entityClass, null);
@@ -212,10 +194,6 @@ public class EntityHelper {
 
     /**
      * 获取全部的Field
-     *
-     * @param entityClass
-     * @param fieldList
-     * @return
      */
     private static List<Field> getAllField(Class<?> entityClass, List<Field> fieldList) {
         if (fieldList == null) {
@@ -238,8 +216,8 @@ public class EntityHelper {
         }
         return fieldList;
     }
-    
-    public static Field getEntityField(String tableName,String fieldName){
-    	return entityFieldMappings.get(tableName).get(fieldName);
+
+    public static Field getEntityField(String tableName, String fieldName) {
+        return entityFieldMappings.get(tableName).get(fieldName);
     }
 }

@@ -15,45 +15,45 @@
  */
 package com.jeesuite.mybatis.plugin.security;
 
+import com.jeesuite.common.JeesuiteBaseException;
+import com.jeesuite.mybatis.core.InterceptorHandler;
+import com.jeesuite.mybatis.plugin.JeesuiteMybatisInterceptor;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.plugin.Invocation;
 
-import com.jeesuite.common.JeesuiteBaseException;
-import com.jeesuite.mybatis.core.InterceptorHandler;
-import com.jeesuite.mybatis.plugin.JeesuiteMybatisInterceptor;
-
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2018年11月11日
+ * @since 2018年11月11日
  */
-public class SensitiveOperProtectHandler implements InterceptorHandler{
+public class SensitiveOperProtectHandler implements InterceptorHandler {
 
-	@Override
-	public void start(JeesuiteMybatisInterceptor context) {}
+    @Override
+    public void start(JeesuiteMybatisInterceptor context) {
+    }
 
-	@Override
-	public void close() {}
+    @Override
+    public void close() {
+    }
 
-	@Override
-	public Object onInterceptor(Invocation invocation) throws Throwable {
-		Object[] objects = invocation.getArgs();
-		MappedStatement ms = (MappedStatement) objects[0];
-		if(ms.getSqlCommandType().equals(SqlCommandType.DELETE)){
-			throw new JeesuiteBaseException(4003, "当前已开启敏感操作保护");
-		}
-		return null;
-	}
+    @Override
+    public Object onInterceptor(Invocation invocation) throws Throwable {
+        Object[] objects = invocation.getArgs();
+        MappedStatement ms = (MappedStatement) objects[0];
+        if (ms.getSqlCommandType().equals(SqlCommandType.DELETE)) {
+            throw new JeesuiteBaseException(4003, "当前已开启敏感操作保护");
+        }
+        return null;
+    }
 
-	@Override
-	public void onFinished(Invocation invocation, Object result) {
-		
-	}
+    @Override
+    public void onFinished(Invocation invocation, Object result) {
 
-	@Override
-	public int interceptorOrder() {
-		return 1;
-	}
+    }
+
+    @Override
+    public int interceptorOrder() {
+        return 1;
+    }
 
 }

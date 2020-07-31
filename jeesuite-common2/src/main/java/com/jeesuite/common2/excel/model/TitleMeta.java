@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.jeesuite.common2.excel.model;
 
@@ -7,85 +7,84 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2016年12月23日
+ * @since 2016年12月23日
  */
 public class TitleMeta {
 
-	private String title;
-	
-	private int rowIndex = 1;
-	
-	private int columnIndex;
-	
-	private Class<?> valueType;
-	
-	private TitleMeta parent;
-	
-	private List<TitleMeta> children;
-	
+    private String title;
 
-	public TitleMeta(String title, int rowIndex, int columnIndex) {
-		this.title = title;
-		this.rowIndex = rowIndex;
-		this.columnIndex = columnIndex;
-	}
-	
-	public TitleMeta(String title) {
-		this.title = title;
-	}
+    private int rowIndex = 1;
 
-	public String getTitle() {
-		return title;
-	}
+    private int columnIndex;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    private Class<?> valueType;
 
-	public int getRowIndex() {
-		return rowIndex;
-	}
+    private TitleMeta parent;
 
-	public void setRowIndex(int rowIndex) {
-		this.rowIndex = rowIndex;
-	}
+    private List<TitleMeta> children;
 
-	public int getColumnIndex() {
-		return columnIndex;
-	}
 
-	public void setColumnIndex(int columnIndex) {
-		this.columnIndex = columnIndex;
-	}
+    public TitleMeta(String title, int rowIndex, int columnIndex) {
+        this.title = title;
+        this.rowIndex = rowIndex;
+        this.columnIndex = columnIndex;
+    }
 
-	public TitleMeta getParent() {
-		return parent;
-	}
+    public TitleMeta(String title) {
+        this.title = title;
+    }
 
-	public List<TitleMeta> getChildren() {
-		return children == null ? (children = new ArrayList<TitleMeta>()) : children;
-	}
-	
+    public String getTitle() {
+        return title;
+    }
 
-	public Class<?> getValueType() {
-		return valueType;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setValueType(Class<?> valueType) {
-		this.valueType = valueType;
-	}
+    public int getRowIndex() {
+        return rowIndex;
+    }
 
-	public void addChildren(TitleMeta child) {
-		getChildren().add(child);
-		child.parent = this;
-	}
+    public void setRowIndex(int rowIndex) {
+        this.rowIndex = rowIndex;
+    }
 
-	@Override
-	public String toString() {
-		return "TitleCellBean [title=" + title + ", rowIndex=" + rowIndex + ", columnIndex=" + columnIndex + "]";
-	}
-	
-	
+    public int getColumnIndex() {
+        return columnIndex;
+    }
+
+    public void setColumnIndex(int columnIndex) {
+        this.columnIndex = columnIndex;
+    }
+
+    public TitleMeta getParent() {
+        return parent;
+    }
+
+    public List<TitleMeta> getChildren() {
+        return children == null ? (children = new ArrayList<TitleMeta>()) : children;
+    }
+
+
+    public Class<?> getValueType() {
+        return valueType;
+    }
+
+    public void setValueType(Class<?> valueType) {
+        this.valueType = valueType;
+    }
+
+    public void addChildren(TitleMeta child) {
+        getChildren().add(child);
+        child.parent = this;
+    }
+
+    @Override
+    public String toString() {
+        return "TitleCellBean [title=" + title + ", rowIndex=" + rowIndex + ", columnIndex=" + columnIndex + "]";
+    }
+
+
 }

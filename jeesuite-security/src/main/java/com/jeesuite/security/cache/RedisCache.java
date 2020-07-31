@@ -21,58 +21,58 @@ import com.jeesuite.cache.command.RedisString;
 import com.jeesuite.security.Cache;
 
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2018年11月8日
+ * @since 2018年11月8日
  */
 public class RedisCache implements Cache {
 
-	private int timeToLiveSeconds;
-	private String keyPrefix;
-	
-	
-	public RedisCache(String keyPrefix,int timeToLiveSeconds) {
-		this.keyPrefix = keyPrefix + ":";
-		this.timeToLiveSeconds = timeToLiveSeconds;
-	}
-	
-	private String buildKey(String key){
-		return this.keyPrefix.concat(key);
-	}
+    private int timeToLiveSeconds;
 
-	@Override
-	public void setString(String key, String value) {
-		new RedisString(buildKey(key)).set(value,timeToLiveSeconds);
-	}
+    private String keyPrefix;
 
-	@Override
-	public String getString(String key) {
-		return new RedisString(buildKey(key)).get();
-	}
 
-	@Override
-	public void setObject(String key, Object value) {
-		new RedisObject(buildKey(key)).set(value,timeToLiveSeconds);
-	}
+    public RedisCache(String keyPrefix, int timeToLiveSeconds) {
+        this.keyPrefix = keyPrefix + ":";
+        this.timeToLiveSeconds = timeToLiveSeconds;
+    }
 
-	@Override
-	public <T> T getObject(String key) {
-		return new RedisObject(buildKey(key)).get();
-	}
+    private String buildKey(String key) {
+        return this.keyPrefix.concat(key);
+    }
 
-	@Override
-	public void remove(String key) {
-		new RedisObject(buildKey(key)).remove();
-	}
+    @Override
+    public void setString(String key, String value) {
+        new RedisString(buildKey(key)).set(value, timeToLiveSeconds);
+    }
 
-	@Override
-	public void removeAll() {
-		RedisBatchCommand.removeByKeyPrefix(keyPrefix);
-	}
+    @Override
+    public String getString(String key) {
+        return new RedisString(buildKey(key)).get();
+    }
 
-	@Override
-	public boolean exists(String key) {
-		return new RedisObject(buildKey(key)).exists();
-	}
+    @Override
+    public void setObject(String key, Object value) {
+        new RedisObject(buildKey(key)).set(value, timeToLiveSeconds);
+    }
+
+    @Override
+    public <T> T getObject(String key) {
+        return new RedisObject(buildKey(key)).get();
+    }
+
+    @Override
+    public void remove(String key) {
+        new RedisObject(buildKey(key)).remove();
+    }
+
+    @Override
+    public void removeAll() {
+        RedisBatchCommand.removeByKeyPrefix(keyPrefix);
+    }
+
+    @Override
+    public boolean exists(String key) {
+        return new RedisObject(buildKey(key)).exists();
+    }
 
 }

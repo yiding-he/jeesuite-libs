@@ -6,7 +6,9 @@ import java.util.regex.Pattern;
  * A simple wildcard pattern that uses the '*' character to match everything.
  */
 public class SimpleWildcardPattern implements CompiledPattern {
+
     private Pattern pattern;
+
     private String original;
 
     public SimpleWildcardPattern(String pattern) {

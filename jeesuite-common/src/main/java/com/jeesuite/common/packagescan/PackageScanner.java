@@ -9,26 +9,30 @@ import java.util.Set;
  * Scans the classpath for packages and tries to determine their versions
  */
 public class PackageScanner {
+
     private Patterns packagePatterns;
+
     private Patterns jarPatterns;
+
     private ClassLoader classLoader;
+
     private PatternFactory patternFactory;
 
-    public Collection<String> scanMatchPackages(String ...packagePatterns){
-    	Patterns ppatterns = new Patterns(packagePatterns, new String[]{});
-    	String[] clonePatterns = packagePatterns.clone();
-    	for (int i = 0; i < clonePatterns.length; i++) {
-    		clonePatterns[i] = clonePatterns[i].replace(".", "/");
-		}
-    	return this.selectPackages(ppatterns)//
-    	           .scan();//
+    public Collection<String> scanMatchPackages(String... packagePatterns) {
+        Patterns ppatterns = new Patterns(packagePatterns, new String[]{});
+        String[] clonePatterns = packagePatterns.clone();
+        for (int i = 0; i < clonePatterns.length; i++) {
+            clonePatterns[i] = clonePatterns[i].replace(".", "/");
+        }
+        return this.selectPackages(ppatterns)//
+                .scan();//
     }
 
     /**
      * Constructor
      */
     public PackageScanner() {
-        packagePatterns = new Patterns(new String[]{"com.*","net.*","org.*"}, new String[]{});
+        packagePatterns = new Patterns(new String[]{"com.*", "net.*", "org.*"}, new String[]{});
         jarPatterns = new Patterns(new String[]{"*.jar"}, new String[]{});
         patternFactory = new SimpleWildcardPatternFactory();
     }
@@ -38,15 +42,16 @@ public class PackageScanner {
         this.jarPatterns = jars;
         return this;
     }
-    
+
     public PackageScanner selectPackages(Patterns packages) {
         this.packagePatterns = packages;
         return this;
     }
-    
+
 
     /**
      * Scans the classloader as configured.
+     *
      * @return A list of discovered packages and their guessed version
      */
     public Set<String> scan() {
@@ -64,15 +69,16 @@ public class PackageScanner {
     }
 
 
-    private void initPatterns()
-    {
+    private void initPatterns() {
         this.jarPatterns.setPatternFactory(patternFactory);
         this.packagePatterns.setPatternFactory(patternFactory);
     }
 
     // DSL methods and classes
+
     /**
      * Sets the classloader to scan
+     *
      * @param classLoader The classloader
      */
     public PackageScanner useClassLoader(ClassLoader classLoader) {
@@ -83,6 +89,7 @@ public class PackageScanner {
 
     /**
      * Sets the pattern factory to use
+     *
      * @param factory The pattern factory
      */
     public PackageScanner usePatternFactory(PatternFactory factory) {
@@ -93,6 +100,7 @@ public class PackageScanner {
 
     /**
      * Sets what patterns to include
+     *
      * @param includes The included patterns
      */
     public static String[] include(String... includes) {
@@ -101,6 +109,7 @@ public class PackageScanner {
 
     /**
      * Sets what patterns to exclude
+     *
      * @param includes The excluded patterns
      */
     public static String[] exclude(String... includes) {
@@ -109,6 +118,7 @@ public class PackageScanner {
 
     /**
      * Sets the jar patterns to scan
+     *
      * @param includes The patterns to include
      * @param excludes The patterns to exclude
      */
@@ -118,6 +128,7 @@ public class PackageScanner {
 
     /**
      * Sets the jar patterns to scan
+     *
      * @param includes The patterns to include
      */
     public static Patterns jars(String[] includes) {
@@ -126,6 +137,7 @@ public class PackageScanner {
 
     /**
      * Sets the package patterns to scan
+     *
      * @param includes The patterns to include
      * @param excludes The patterns to exclude
      */
@@ -135,16 +147,16 @@ public class PackageScanner {
 
     /**
      * Sets the package patterns to scan
+     *
      * @param includes The patterns to include
      */
     public static Patterns packages(String[] includes) {
-    	return new Patterns(includes, new String[]{});
+        return new Patterns(includes, new String[]{});
     }
 
     ClassLoader getClassLoader() {
         return classLoader == null ? Thread.currentThread().getContextClassLoader() : classLoader;
     }
-
 
 
     /**
@@ -153,14 +165,18 @@ public class PackageScanner {
     public static class Patterns {
 
         private String[] origIncludes;
+
         private String[] origExcludes;
 
         private List<CompiledPattern> includes;
+
         private List<CompiledPattern> excludes;
+
         private PatternFactory factory;
 
         /**
          * Constructs a set of patterns
+         *
          * @param includes The patterns to include
          * @param excludes The patterns to exclude
          */
@@ -220,6 +236,7 @@ public class PackageScanner {
     }
 
     private class PatternTest implements InternalScanner.Test {
+
         public boolean matchesPackage(String pkg) {
             return packagePatterns.match(pkg);
         }

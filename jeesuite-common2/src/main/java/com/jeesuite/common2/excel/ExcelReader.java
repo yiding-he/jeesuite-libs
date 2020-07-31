@@ -1,5 +1,13 @@
 package com.jeesuite.common2.excel;
 
+import com.jeesuite.common2.excel.annotation.TitleCell;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellReference;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
@@ -9,44 +17,31 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DateUtil;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.ss.util.CellReference;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.jeesuite.common2.excel.annotation.TitleCell;
-
+import java.util.*;
 
 
 public final class ExcelReader implements Closeable {
 
-    private static final Logger     LOG    = LoggerFactory.getLogger(ExcelReader.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ExcelReader.class);
+
     /**
      * 时日类型的数据默认格式化方式
      */
-    private              DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private       int      startRow;
-    private       String   sheetName;
-    private final String   excelFilePath;
+    private DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    private int startRow;
+
+    private String sheetName;
+
+    private final String excelFilePath;
+
     private final Workbook workbook;
 
     /**
      * 构造方法，传入需要操作的excel文件路径
      *
      * @param excelFilePath 需要操作的excel文件的路径
+     *
      * @throws IOException            IO流异常
      * @throws InvalidFormatException 非法的格式异常
      */
@@ -61,6 +56,7 @@ public final class ExcelReader implements Closeable {
      * 通过数据流操作excel，仅用于读取数据
      *
      * @param inputStream excel数据流
+     *
      * @throws IOException            IO流异常
      * @throws InvalidFormatException 非法的格式异常
      */
@@ -76,6 +72,7 @@ public final class ExcelReader implements Closeable {
      *
      * @param inputStream excel数据流
      * @param outFilePath 输出的excel文件路径
+     *
      * @throws IOException            IO流异常
      * @throws InvalidFormatException 非法的格式异常
      */
@@ -125,6 +122,7 @@ public final class ExcelReader implements Closeable {
      *
      * @param clazz 对应的映射类型
      * @param <T>   泛型
+     *
      * @return 读取结果
      */
     public <T> List<T> parse(Class<T> clazz) {
@@ -265,6 +263,7 @@ public final class ExcelReader implements Closeable {
      *
      * @param rowNumber  行数，从1开始
      * @param cellNumber 列数，从1开始
+     *
      * @return 该单元格的值
      */
     public String getCellValue(int rowNumber, int cellNumber) {

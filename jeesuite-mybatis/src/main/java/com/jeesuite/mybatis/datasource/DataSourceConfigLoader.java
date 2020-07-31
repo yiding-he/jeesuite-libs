@@ -6,15 +6,14 @@ package com.jeesuite.mybatis.datasource;
 import java.util.List;
 
 /**
- * 
  * <br>
  * Class Name   : DataSourceConfigLoader
  *
  * @author jiangwei
  * @version 1.0.0
- * @date 2020年6月30日
+ * @since 2020年6月30日
  */
 public interface DataSourceConfigLoader {
-	
-	List<DataSourceConfig> load();
+
+    List<DataSourceConfig> load();
 }

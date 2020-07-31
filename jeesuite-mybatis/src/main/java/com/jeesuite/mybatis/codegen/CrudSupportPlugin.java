@@ -1,12 +1,7 @@
 /**
- * 
+ *
  */
 package com.jeesuite.mybatis.codegen;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Properties;
-import java.util.Set;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
@@ -21,19 +16,30 @@ import org.mybatis.generator.config.Context;
 import org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl;
 import org.mybatis.generator.internal.util.StringUtility;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
+
 
 public class CrudSupportPlugin extends PluginAdapter {
+
     private Set<String> mappers = new HashSet<String>();
+
     private boolean caseSensitive = false;
+
     //开始的分隔符，例如mysql为`，sqlserver为[
     private String beginningDelimiter = "";
+
     //结束的分隔符，例如mysql为`，sqlserver为]
     private String endingDelimiter = "";
+
     //数据库模式
     private String schema;
+
     //注释生成器
     private CommentGeneratorConfiguration commentCfg;
-    
+
     private JavaTypeResolverDefaultImpl javaTypeResolver = new JavaTypeResolverDefaultImpl();
 
     @Override
@@ -111,24 +117,24 @@ public class CrudSupportPlugin extends PluginAdapter {
         FullyQualifiedJavaType idType = null;
         List<IntrospectedColumn> columns = introspectedTable.getBaseColumns();
         for (IntrospectedColumn col : columns) {
-        	if(!col.isIdentity())continue;
-        	idType = javaTypeResolver.calculateJavaType(col);
-    		break;
+            if (!col.isIdentity()) continue;
+            idType = javaTypeResolver.calculateJavaType(col);
+            break;
         }
-        
-        if(idType == null){
-        	for (IntrospectedColumn col : columns) {
-            	if("id".equalsIgnoreCase(col.getActualColumnName())){
-            		idType = javaTypeResolver.calculateJavaType(col);
-            		break;
-            	}
+
+        if (idType == null) {
+            for (IntrospectedColumn col : columns) {
+                if ("id".equalsIgnoreCase(col.getActualColumnName())) {
+                    idType = javaTypeResolver.calculateJavaType(col);
+                    break;
+                }
             }
         }
         //import接口
         for (String mapper : mappers) {
             interfaze.addImportedType(new FullyQualifiedJavaType(mapper));
             String idJavaType = idType != null ? idType.getShortName() : "String";
-            interfaze.addSuperInterface(new FullyQualifiedJavaType(mapper + "<" + entityType.getShortName() + ","+idJavaType+">"));
+            interfaze.addSuperInterface(new FullyQualifiedJavaType(mapper + "<" + entityType.getShortName() + "," + idJavaType + ">"));
         }
         //import实体类
         interfaze.addImportedType(entityType);

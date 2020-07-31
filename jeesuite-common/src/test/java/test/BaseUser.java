@@ -1,68 +1,67 @@
 /**
- * 
+ *
  */
 package test;
 
 import java.io.Serializable;
 
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2016年11月4日
+ * @since 2016年11月4日
  */
 public class BaseUser implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Integer id;
+    private Integer id;
 
-	private String name;
+    private String name;
 
-	private String mobile = "13800138000";
+    private String mobile = "13800138000";
 
-	private String email;
-	
-	private BaseUser father;
+    private String email;
 
-	public Integer getId() {
-		return id;
-	}
+    private BaseUser father;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getMobile() {
-		return mobile;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
+    public String getMobile() {
+        return mobile;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public BaseUser getFather() {
-		return father;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setFather(BaseUser father) {
-		this.father = father;
-	}
+    public BaseUser getFather() {
+        return father;
+    }
 
-   
+    public void setFather(BaseUser father) {
+        this.father = father;
+    }
+
+
 }

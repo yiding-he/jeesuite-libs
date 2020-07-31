@@ -1,9 +1,8 @@
 package com.jeesuite.mybatis.crud.helper;
 
+import javax.persistence.GenerationType;
 import java.util.Map;
 import java.util.Set;
-
-import javax.persistence.GenerationType;
 
 
 public class EntityMapper {
@@ -21,7 +20,7 @@ public class EntityMapper {
     private Map<String, String> aliasMap;
 
     private Class<?> idClass;
-    
+
     private GenerationType idStrategy;
 
     public TableMapper getTableMapper() {
@@ -42,14 +41,14 @@ public class EntityMapper {
 
 
     public ColumnMapper getIdColumn() {
-		return idColumn;
-	}
+        return idColumn;
+    }
 
-	public void setIdColumn(ColumnMapper idColumn) {
-		this.idColumn = idColumn;
-	}
+    public void setIdColumn(ColumnMapper idColumn) {
+        this.idColumn = idColumn;
+    }
 
-	public Map<String, String> getAliasMap() {
+    public Map<String, String> getAliasMap() {
         return aliasMap;
     }
 
@@ -65,16 +64,16 @@ public class EntityMapper {
         this.idClass = idClass;
     }
 
-	public GenerationType getIdStrategy() {
-		return idStrategy;
-	}
+    public GenerationType getIdStrategy() {
+        return idStrategy;
+    }
 
-	public void setIdStrategy(GenerationType idStrategy) {
-		this.idStrategy = idStrategy;
-	}
-   
-	public boolean autoId(){
-		return idStrategy != null;
-	}
+    public void setIdStrategy(GenerationType idStrategy) {
+        this.idStrategy = idStrategy;
+    }
+
+    public boolean autoId() {
+        return idStrategy != null;
+    }
 
 }

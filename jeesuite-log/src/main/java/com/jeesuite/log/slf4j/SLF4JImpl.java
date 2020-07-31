@@ -1,15 +1,16 @@
 package com.jeesuite.log.slf4j;
 
+import com.jeesuite.log.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.spi.LocationAwareLogger;
 
-import com.jeesuite.log.Log;
-
 public class SLF4JImpl implements Log {
 
     private static final String callerFQCN = SLF4JImpl.class.getName();
+
     private static final Logger testLogger = LoggerFactory.getLogger(SLF4JImpl.class);
+
     static {
         // if the logger is not a LocationAwareLogger instance, it can not get correct stack StackTraceElement
         // so ignore this implementation.
@@ -17,17 +18,22 @@ public class SLF4JImpl implements Log {
             throw new UnsupportedOperationException(testLogger.getClass() + " is not a suitable logger");
         }
     }
-    private int                 errorCount;
-    private int                 warnCount;
-    private int                 infoCount;
-    private int                 debugCount;
+
+    private int errorCount;
+
+    private int warnCount;
+
+    private int infoCount;
+
+    private int debugCount;
+
     private LocationAwareLogger log;
 
-    public SLF4JImpl(LocationAwareLogger log){
+    public SLF4JImpl(LocationAwareLogger log) {
         this.log = log;
     }
 
-    public SLF4JImpl(String loggerName){
+    public SLF4JImpl(String loggerName) {
         this.log = (LocationAwareLogger) LoggerFactory.getLogger(loggerName);
     }
 

@@ -1,25 +1,17 @@
-/**
- * 
- */
 package com.jeesuite.springboot.starter.mybatis;
-
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
 
 import org.springframework.context.annotation.Import;
 
+import java.lang.annotation.*;
+
 /**
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2017年3月28日
+ * @since 2017年3月28日
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import({JeesuiteMybatisConfiguration.class,JeesuiteDataSourceConfiguration.class})
+@Import({JeesuiteMybatisConfiguration.class, JeesuiteDataSourceConfiguration.class})
 public @interface EnableJeesuiteMybatis {
 
 }

@@ -4,14 +4,13 @@ import com.jeesuite.common.JeesuiteBaseException;
 
 public class UnauthorizedException extends JeesuiteBaseException {
 
-	private static final long serialVersionUID = 1L;
-	
-	private static final String MSG = "401 Unauthorized";
+    private static final long serialVersionUID = 1L;
 
-	public UnauthorizedException() {
-		super(401,MSG);
-	}
-	
-	
+    private static final String MSG = "401 Unauthorized";
+
+    public UnauthorizedException() {
+        super(401, MSG);
+    }
+
 
 }

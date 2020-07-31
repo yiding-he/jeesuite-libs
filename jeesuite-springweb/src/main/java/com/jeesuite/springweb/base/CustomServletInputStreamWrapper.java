@@ -1,19 +1,17 @@
 package com.jeesuite.springweb.base;
 
-import java.io.IOException;
-
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
+import java.io.IOException;
 
 /**
- * 
- * @description <br>
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
- * @date 2018年3月7日
+ * @since 2018年3月7日
  */
-public class CustomServletInputStreamWrapper  extends ServletInputStream {
+public class CustomServletInputStreamWrapper extends ServletInputStream {
 
     private byte[] data;
+
     private int idx = 0;
 
     /**
@@ -34,19 +32,19 @@ public class CustomServletInputStreamWrapper  extends ServletInputStream {
         return data[idx++] & 0xff;
     }
 
-	@Override
-	public boolean isFinished() {
-		return idx == data.length;
-	}
+    @Override
+    public boolean isFinished() {
+        return idx == data.length;
+    }
 
-	@Override
-	public boolean isReady() {
-		return true;
-	}
+    @Override
+    public boolean isReady() {
+        return true;
+    }
 
-	@Override
-	public void setReadListener(ReadListener listener) {
-		
-	}
+    @Override
+    public void setReadListener(ReadListener listener) {
+
+    }
 
 }
