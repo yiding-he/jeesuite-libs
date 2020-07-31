@@ -21,10 +21,10 @@ public class TokenGenerator {
 
     private static final int EXPIRE = 1000 * 60 * 3;
 
-    public static String generate(String... prefixs) {
+    public static String generate(String... prefixes) {
         String str = StringUtils.replace(UUID.randomUUID().toString(), LINE_THROUGH, StringUtils.EMPTY);
-        if (prefixs != null && prefixs.length > 0 && StringUtils.isNotBlank(prefixs[0])) {
-            return prefixs[0].concat(str);
+        if (prefixes != null && prefixes.length > 0 && StringUtils.isNotBlank(prefixes[0])) {
+            return prefixes[0].concat(str);
         }
         return str;
     }
