@@ -27,6 +27,7 @@ import java.io.IOException;
 
 /**
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
+ * @author <a href="mailto:yiding.he@gmail.com">yiding-he</a>
  * @since 2018年11月30日
  */
 public class SecurityDelegatingFilter implements Filter {
@@ -34,6 +35,12 @@ public class SecurityDelegatingFilter implements Filter {
     private static final String MSG_401_UNAUTHORIZED = "{\"code\": 401,\"msg\":\"401 Unauthorized\"}";
 
     private static String MSG_403_FORBIDDEN = "{\"code\": 403,\"msg\":\"403 Forbidden\"}";
+
+    private final SecurityConfiguration securityConfiguration;
+
+    public SecurityDelegatingFilter(SecurityConfiguration securityConfiguration) {
+        this.securityConfiguration = securityConfiguration;
+    }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

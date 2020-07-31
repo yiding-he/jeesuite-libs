@@ -29,7 +29,7 @@ public class UserSession {
 
     public static UserSession create() {
         UserSession session = new UserSession();
-        session.sessionId = TokenGenerator.generate();
+        session.sessionId = TokenGenerator.generate(); // TODO sessionId 应该改为 JWT
         return session;
     }
 
