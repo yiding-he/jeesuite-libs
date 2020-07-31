@@ -121,13 +121,13 @@ public class JedisProviderFactoryBean implements ApplicationContextAware, Initia
         if (org.apache.commons.lang3.StringUtils.isAnyBlank(mode, servers)) {
             throw new Exception("type or servers is empty??");
         }
-        registerRedisProvier();
+        registerRedisProvider();
     }
 
     /**
      *
      */
-    private void registerRedisProvier() {
+    private void registerRedisProvider() {
         String beanName = getGroup() + REDIS_PROVIDER_SUFFIX;
         if (context.containsBean(beanName)) {
             throw new RuntimeException("已包含group为［" + this.group + "］的缓存实例");
